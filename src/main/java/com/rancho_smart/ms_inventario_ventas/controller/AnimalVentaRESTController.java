@@ -31,6 +31,16 @@ public class AnimalVentaRESTController {
                           .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/animal/{idAnimal}")
+    public ResponseEntity<List<AnimalVenta>> getAnimalesVentaByIdAnimal(@PathVariable Long idAnimal){
+        List<AnimalVenta> animales = this.animalVentaService.getAnimalesByIdAnimal(idAnimal);
+        if(animales.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(animales, HttpStatus.OK);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<AnimalVenta> createAnimalVenta(@RequestBody AnimalVenta animalVenta) {
         AnimalVenta newAnimalVenta = animalVentaService.saveAnimalVenta(animalVenta);

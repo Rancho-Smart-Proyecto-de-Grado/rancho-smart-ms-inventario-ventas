@@ -19,6 +19,10 @@ public class AnimalVentaService {
         return animalVentaRepository.findAll();
     }
 
+    public List<AnimalVenta> getAnimalesByIdAnimal(Long idAnimal){
+        return this.animalVentaRepository.findByIdAnimal(idAnimal);
+    }
+
     public Optional<AnimalVenta> getAnimalVentaById(Long id) {
         return animalVentaRepository.findById(id);
     }
